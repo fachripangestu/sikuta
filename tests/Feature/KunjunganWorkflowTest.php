@@ -284,7 +284,7 @@ test('subbagian umum dapat upload dokumen balasan untuk data lama berstatus terk
     expect($tamu->workflow_step)->toBe('selesai');
 });
 
-test('subbagian umum dapat upload dokumen balasan untuk permohonan berstatus ditunda', function () {
+test('unggah surat penundaan menyelesaikan tahap tanpa mengubah status ditunda', function () {
     Storage::fake('public');
 
     $subbagUmum = User::factory()->create([
@@ -312,7 +312,7 @@ test('subbagian umum dapat upload dokumen balasan untuk permohonan berstatus dit
     expect($tamu->balasan_nama)->toBe('balasan-penundaan.pdf');
     expect($tamu->balasan_uploaded_by)->toBe($subbagUmum->id);
     expect($tamu->balasan_uploaded_at)->not->toBeNull();
-    expect($tamu->status)->toBe('selesai');
+    expect($tamu->status)->toBe('ditunda');
     expect($tamu->workflow_step)->toBe('selesai');
 });
 
